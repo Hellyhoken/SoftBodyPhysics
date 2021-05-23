@@ -11,6 +11,7 @@ public class Graphics2 : MonoBehaviour
 
 	private void Start()
 	{
+		lines = new LineRenderer[physics.connections.Length];
 		for (int i = 0; i < physics.connections.Length; i++) {
 			lines[i] = Instantiate(linePrefab, transform.root).GetComponent<LineRenderer>();
 			lines[i].positionCount = 2;
@@ -20,7 +21,7 @@ public class Graphics2 : MonoBehaviour
 	private void FixedUpdate()
 	{
 		for (int i = 0; i < lines.Length; i++) {
-			Vector3[] ends = { physics.nodes[physics.connections[i][0]].position, physics.nodes[physics.connections[i][0]].position };
+			Vector3[] ends = { physics.nodes[physics.connections[i].x].position, physics.nodes[physics.connections[i].y].position };
 			lines[i].SetPositions(ends);
 		}
 	}
